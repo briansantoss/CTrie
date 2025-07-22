@@ -15,7 +15,8 @@ typedef struct {
 } Trie;
 
 Trie* create_trie(void);
-bool insert(Trie* trie, const char* word);
-bool search(Trie* trie, const char* word);
+bool insert_word(Trie* trie, const char* word);
+bool has_word(Trie* trie, const char* word);
+bool delete_word(Trie* trie, const char* word);
 
 #endif // TRIE_H

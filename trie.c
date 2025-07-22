@@ -27,7 +27,7 @@ Trie* create_trie(void) {
     return trie;
 }
 
-bool insert(Trie* trie, const char* word) {
+bool insert_word(Trie* trie, const char* word) {
     if (!trie || !word || !*word) return false;
 
     TrieNode* curr = trie->root;
@@ -52,7 +52,7 @@ bool insert(Trie* trie, const char* word) {
     return true;
 }
 
-bool search(Trie* trie, const char* word) {
+bool has_word(Trie* trie, const char* word) {
     if (!trie || !word || !*word) return false;
         
     TrieNode* curr = trie->root;
@@ -69,4 +69,27 @@ bool search(Trie* trie, const char* word) {
         uword++; // Advance to the next character
     }
     return curr->terminal;
+}
+
+bool delete_word(Trie* trie, const char* word) {
+    if (!trie || !word || !*word) return false;
+
+    TrieNode* curr = trie->root;
+
+    const unsigned char* uword = (const unsigned char*) word;
+    while (*uword) {
+        if (!islower(*uword)) return false; // Reject words with non-lowercase letters
+
+        int idx = *uword - 'a'; // Map character to child index
+
+        if (!curr->children[idx]) return false; // Return false if character not found
+
+        curr = curr->children[idx]; // Move to the next node
+        uword++; // Advance to the next character
+    }
+    
+    if (!curr->terminal) return false;
+
+    curr->terminal = false;
+    return true;
 }
