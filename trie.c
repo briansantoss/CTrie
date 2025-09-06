@@ -71,6 +71,25 @@ bool has_word(Trie* trie, const char* word) {
     return curr->terminal;
 }
 
+bool has_prefix(Trie* trie, const char* word) {
+    if (!trie || !word | !*word) return false;
+
+    TrieNode* curr = trie->root;
+
+    const unsigned char* uword = (const unsigned char*) word;
+    while (*uword) {
+        if (!islower(*uword)) return false;
+
+        int idx = *uword - 'a';
+
+        if (!curr->children[idx]) return false;
+
+        curr = curr->children[idx];
+        uword++;
+    }
+    return true; 
+}
+
 bool delete_word(Trie* trie, const char* word) {
     if (!trie || !word || !*word) return false;
 

@@ -23,5 +23,7 @@ int main() {
     printf("\n\nIs 'ladder' still in the Trie? %s", has_word(t, "ladder") ? "Yes" : "No");
 
     printf("\n\nWhat about 'catch'? Is it in the Trie? %s", has_word(t, "catch") ? "Yes" : "No");
+
+    printf("\n\nPrefix '%s' is in the Trie? %s", "cat", has_prefix(t, "cat") ? "Yes" : "No");
     return 0;
 }

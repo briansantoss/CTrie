@@ -17,6 +17,7 @@ typedef struct {
 Trie* create_trie(void);
 bool insert_word(Trie* trie, const char* word);
 bool has_word(Trie* trie, const char* word);
+bool has_prefix(Trie* trie, const char* word);
 bool delete_word(Trie* trie, const char* word);
 
 #endif // TRIE_H
